@@ -26,7 +26,8 @@ export default function Hero() {
         priority
         sizes="150vw"
         quality={100}
-        className="relative z-10 object-contain object-center pointer-events-none select-none"
+        className="sticky z-0 object-cover pointer-events-none select-none"
+        style={{ objectPosition: "top 0px" }}
       />
 
       {/* CTA pill */}
