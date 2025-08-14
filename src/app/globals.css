@@ -24,3 +24,24 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.serif {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+/* Minimal helpers for buttons and rounded UI */
+.btn {
+  border-radius: 9999px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  transition: opacity 150ms ease;
+}
+
+.btn-primary {
+  background-color: #0a0a0a;
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
