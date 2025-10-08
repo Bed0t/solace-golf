@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "^10.6.1",
+    "@react-three/drei": "^10.7.3",
     "@react-three/fiber": "^9.3.0",
     "@shopify/shopify-api": "^11.14.1",
+    "@uiw/react-color-circle": "^2.7.3",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
     "graphql-request": "^7.2.0",
@@ -22,8 +23,10 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-use-measure": "^2.1.7",
+    "stripe": "^18.5.0",
     "tailwind-merge": "^3.3.1",
     "three": "^0.179.1",
+    "three-stdlib": "^2.36.0",
     "zustand": "^5.0.7"
   },
   "devDependencies": {

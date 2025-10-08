@@ -35,7 +35,7 @@ export default function SignupPage() {
   return (
     <main className="relative min-h-screen w-full bg-black text-white">
       {/* Center the viewer exactly in the middle of the screen */}
-      <div className="absolute z-10 left-190 top-[25vh] -translate-x-1/2 w-[clamp(220px,22vw,338.24px)] h-[clamp(56px,9vw,101px)]">
+      <div className="absolute right-1/2 z-10 left-1/2 top-[25vh] -translate-x-1/2 w-[clamp(220px,22vw,338.24px)] h-[clamp(56px,9vw,101px)]">
         <div className="w-full max-w-md px-6">
           <ThreeModelViewer modelUrl="/models/SS-001.glb" height="160px" />
         </div>

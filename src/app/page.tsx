@@ -1,21 +1,10 @@
-import Link from "next/link";
-import Image from "next/image";
 import Hero from "@/components/Hero";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
     <main className="min-h-sticky w-full bg-white text-neutral-900 flex flex-col">
-      {/* Header with Montserrat Bold 20px, letter-spacing -3px */}
-      <header className="sticky top-0 left-0 right-0 z-50 backdrop-blur bg-white/75 h-16 flex items-center">
-        <div className="mx-auto max-w-7xl w-full px-6 flex items-center justify-center">
-          <div
-            className="mx-auto font-[700] [letter-spacing:-3px] text-[20px] leading-[28px] uppercase"
-            style={{ fontFamily: "var(--font-montserrat)" }}
-          >
-            SOLACE
-          </div>
-        </div>
-      </header>
+      <Header variant="sticky" />
 
       <Hero />
 
