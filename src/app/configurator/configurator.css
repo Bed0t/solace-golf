@@ -5,6 +5,9 @@
   --text: #000000;
   --muted: #000000;
   --accent: #01a5d7;
+  /* Mobile helpers */
+  --header-height: 64px;
+  --mobile-panel-height: 320px;
 }
 
 html, body, #root {
@@ -449,12 +452,16 @@ html, body, #root {
   margin: 10px auto 0;
 }
 
-/* Mobile layout: bottom drawer */
+/* Mobile layout: bottom drawer + safe area + 100dvh fix */
 @media (max-width: 900px) {
   .app-root {
+    /* Use dynamic viewport height to avoid URL bar jumps */
+    height: 100dvh;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 280px;
+    grid-template-rows: 1fr var(--mobile-panel-height);
+    /* Keep content from hiding behind fixed header */
+    padding-top: var(--header-height);
   }
   .scene-wrap {
     height: 100%;
@@ -466,6 +473,7 @@ html, body, #root {
     right: auto;
     top: auto;
     border-top: 1px solid var(--panel-border);
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
   }
   .config-panel {
     width: auto;
@@ -479,7 +487,10 @@ html, body, #root {
     width: 100%;
     justify-content: space-between;
   }
+  .tab { height: 36px; padding: 8px 12px; }
   .select-button, .options { width: 100%; }
+  .color-bar .arrow { width: 44px; height: 44px; font-size: 32px; }
+  .w-color-circle { --circle-size: 38px; }
   .swatches {
     width: auto;
     justify-content: flex-start;
@@ -488,6 +499,23 @@ html, body, #root {
   .sub-selector::after {
     width: 100%;
   }
+
+  /* Product info overlay sits centered above the drawer on mobile */
+  .product-info-overlay {
+    left: 50%;
+    top: auto;
+    bottom: calc(var(--mobile-panel-height) + 12px + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    width: min(92vw, 340px);
+    height: auto;
+    padding: 8px 10px;
+    column-gap: 6px;
+    row-gap: 2px;
+  }
+  .product-info-label-display,
+  .product-info-label-code { font-size: 12px; letter-spacing: 1.5px; }
+  .product-info-value-display,
+  .product-info-value-code { font-size: 14px; letter-spacing: 0.12em; }
 }
 
 
