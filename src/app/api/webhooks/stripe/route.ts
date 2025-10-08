@@ -10,7 +10,7 @@ if (!stripeSecretKey) {
   console.warn('[Stripe] STRIPE_SECRET_KEY is not set. Webhook verification will fail until configured.')
 }
 
-const stripe = stripeSecretKey ? new Stripe(stripeSecretKey, { apiVersion: '2024-06-20' }) : (null as unknown as Stripe)
+const stripe = stripeSecretKey ? new Stripe(stripeSecretKey) : (null as unknown as Stripe)
 
 export async function POST(req: NextRequest) {
   if (!stripe || !webhookSecret) {

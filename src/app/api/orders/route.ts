@@ -9,7 +9,7 @@ export async function GET(_req: NextRequest) {
   if (!stripeSecretKey) {
     return NextResponse.json({ error: 'Stripe not configured' }, { status: 500 })
   }
-  const stripe = new Stripe(stripeSecretKey, { apiVersion: '2024-06-20' })
+  const stripe = new Stripe(stripeSecretKey)
 
   try {
     const sessions = await stripe.checkout.sessions.list({ limit: 50 })
