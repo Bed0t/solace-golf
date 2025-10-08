@@ -22,6 +22,9 @@ type CheckoutBody = {
 }
 
 function getOrigin(req: NextRequest): string {
+  // Prefer explicit site URL when provided to ensure consistent checkout return URLs
+  const site = process.env.NEXT_PUBLIC_SITE_URL
+  if (site) return site.replace(/\/$/, '')
   const hdr = req.headers.get('origin') || req.headers.get('x-forwarded-host')
   if (!hdr) return 'http://localhost:3000'
   if (hdr.startsWith('http')) return hdr

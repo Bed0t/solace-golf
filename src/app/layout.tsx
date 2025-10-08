@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Cormorant_Garamond, Montserrat } from "next/font/goo
 import "./globals.css";
 import PageTransition from "@/components/PageTransition";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.solace-golf.com";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,11 +33,15 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Solace Golf",
     description: "A new culture of carry.",
     type: "website",
-    url: "https://solace.golf",
+    url: siteUrl,
   },
 };
 
