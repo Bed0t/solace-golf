@@ -30,9 +30,23 @@ export async function POST(request: Request) {
       // Apps Script often requires CORS enabled on its side; we just forward server-side
     });
 
-    if (!res.ok) {
-      const text = await res.text().catch(() => "");
-      return NextResponse.json({ error: "Upstream error", details: text }, { status: 502 });
+    // Apps Script Web Apps can't set custom HTTP status codes for JSON responses reliably.
+    // Treat a JSON body containing { error } as a failure even if res.ok is true.
+    const raw = await res.text().catch(() => "");
+    let parsed: unknown;
+    try {
+      parsed = raw ? JSON.parse(raw) : undefined;
+    } catch {
+      parsed = undefined;
+    }
+
+    const upstreamError = typeof parsed === "object" && parsed !== null && (parsed as any).error;
+
+    if (!res.ok || upstreamError) {
+      return NextResponse.json(
+        { error: "Upstream error", details: upstreamError || raw },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({ ok: true });

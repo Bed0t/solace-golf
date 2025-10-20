@@ -65,8 +65,7 @@ function doPost(e) {
     var email = (data.email || '').toString().trim().toLowerCase();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return ContentService.createTextOutput(JSON.stringify({ error: 'invalid email' }))
-        .setMimeType(ContentService.MimeType.JSON)
-        .setResponseCode(400);
+        .setMimeType(ContentService.MimeType.JSON);
     }
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     sheet.appendRow([
@@ -77,12 +76,10 @@ function doPost(e) {
       data.ip || '',
     ]);
     return ContentService.createTextOutput(JSON.stringify({ ok: true }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setResponseCode(200);
+      .setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return ContentService.createTextOutput(JSON.stringify({ error: 'server error' }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setResponseCode(500);
+      .setMimeType(ContentService.MimeType.JSON);
   }
 }
 

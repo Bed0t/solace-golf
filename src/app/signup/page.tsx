@@ -23,8 +23,12 @@ export default function SignupPage() {
         body: JSON.stringify({ email }),
       });
       if (!res.ok) {
-        const data = await res.json().catch(() => ({} as any));
-        setError(data?.error || "Something went wrong. Please try again.");
+        let message = "Something went wrong. Please try again.";
+        try {
+          const data = await res.json();
+          message = [data?.error, data?.details].filter(Boolean).join(" — ") || message;
+        } catch {}
+        setError(message);
         return;
       }
       setSubmitted(true);
