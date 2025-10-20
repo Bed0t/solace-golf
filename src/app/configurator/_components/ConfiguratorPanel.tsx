@@ -236,7 +236,7 @@ export default function ConfiguratorPanel({
 							aria-label="Leather preview"
 							style={{
 								backgroundImage: `linear-gradient(${selectedColor}, ${selectedColor}), url('/white_leather.jpg')`,
-								backgroundSize: '1000px',
+								backgroundSize: '900px',
 								backgroundPosition: 'center',
 							}}
 						/>

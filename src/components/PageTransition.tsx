@@ -8,13 +8,13 @@ export default function PageTransition({ children }: PropsWithChildren) {
   const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="popLayout" initial={true}>
+    <AnimatePresence mode="popLayout" initial={false}>
       <motion.div
         key={pathname}
-        initial={{ opacity: 0, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         exit={{ opacity: 0, y: -12, filter: "blur(8px)" }}
-        transition={{ duration: 2, ease: [1, 0.1, 0.25, 1] }}
+        transition={{ duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}
       >
         {children}
       </motion.div>

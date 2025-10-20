@@ -5,9 +5,6 @@
   --text: #000000;
   --muted: #000000;
   --accent: #01a5d7;
-  /* Mobile helpers */
-  --header-height: 64px;
-  --mobile-panel-height: 320px;
 }
 
 html, body, #root {
@@ -258,9 +255,9 @@ html, body, #root {
 
 .color-bar {
   display: grid;
-  grid-template-columns: 40px 200px 40px;
+  grid-template-columns: 8px 190px 38px;
   align-items: center;
-  gap: 40px;
+  gap: 65px;
   width: auto;
   margin: 0 auto;
 }
@@ -270,30 +267,30 @@ html, body, #root {
   border: none;
   color: #000;
   width: 40px;
-  height: 32px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 35px;
+  font-size: 45px;
 }
 
 .swatches {
   display: flex;
   gap: 16px;
-  width: 250px; /* 6 swatches per slide: 6*25 + 5*16 */
+  width: 220px; /* 6 swatches per slide: 6*25 + 5*16 */
   justify-content: flex-start;
   overflow-x: auto;
-  padding: 3;
+  padding: 4;
   scrollbar-width: none; /* Firefox */
 }
 .swatches::-webkit-scrollbar { display: none; }
 
 /* uiw circle overrides to match design */
 .w-color-circle {
-  --circle-size: 35px;
+  --circle-size: 25px;
   display: inline-flex !important;
   flex-wrap: nowrap !important;
-  gap: 22px !important;
+  gap: 16px !important;
 }
 .w-color-circle .w-color-circle__color {
   width: var(--circle-size) !important;
@@ -452,16 +449,12 @@ html, body, #root {
   margin: 10px auto 0;
 }
 
-/* Mobile layout: bottom drawer + safe area + 100dvh fix */
+/* Mobile layout: bottom drawer */
 @media (max-width: 900px) {
   .app-root {
-    /* Use dynamic viewport height to avoid URL bar jumps */
-    height: 100dvh;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr var(--mobile-panel-height);
-    /* Keep content from hiding behind fixed header */
-    padding-top: var(--header-height);
+    grid-template-rows: 1fr 280px;
   }
   .scene-wrap {
     height: 100%;
@@ -473,7 +466,6 @@ html, body, #root {
     right: auto;
     top: auto;
     border-top: 1px solid var(--panel-border);
-    padding-bottom: calc(12px + env(safe-area-inset-bottom));
   }
   .config-panel {
     width: auto;
@@ -487,10 +479,7 @@ html, body, #root {
     width: 100%;
     justify-content: space-between;
   }
-  .tab { height: 36px; padding: 8px 12px; }
   .select-button, .options { width: 100%; }
-  .color-bar .arrow { width: 44px; height: 44px; font-size: 32px; }
-  .w-color-circle { --circle-size: 38px; }
   .swatches {
     width: auto;
     justify-content: flex-start;
@@ -499,23 +488,6 @@ html, body, #root {
   .sub-selector::after {
     width: 100%;
   }
-
-  /* Product info overlay sits centered above the drawer on mobile */
-  .product-info-overlay {
-    left: 50%;
-    top: auto;
-    bottom: calc(var(--mobile-panel-height) + 12px + env(safe-area-inset-bottom));
-    transform: translateX(-50%);
-    width: min(92vw, 340px);
-    height: auto;
-    padding: 8px 10px;
-    column-gap: 6px;
-    row-gap: 2px;
-  }
-  .product-info-label-display,
-  .product-info-label-code { font-size: 12px; letter-spacing: 1.5px; }
-  .product-info-value-display,
-  .product-info-value-code { font-size: 14px; letter-spacing: 0.12em; }
 }
 
 
