@@ -10,12 +10,15 @@ export default function Hero() {
       {/* Infinite slider background */}
       <div className="absolute inset-x-0 top-[34vh] z-0 flex min-h-[5px] items-center justify-center">
         <InfiniteSlider gap={0} duration={100} className="w-auto h-[clamp(20px,4w,48px)]">
-          <img
+          <Image
             src="/swatches/Swatch Group.png"
             alt="Swatch Group"
+            width={2000}
+            height={80}
+            loading="lazy"
             className="h-20 w-2000"
           />
-        </InfiniteSlider> 
+        </InfiniteSlider>
       </div>
 
       {/* Background hero image */}
@@ -24,8 +27,8 @@ export default function Hero() {
         alt="Solace Golf Bag"
         fill
         priority
-        sizes="150vw"
-        quality={100}
+        sizes="100vw"
+        quality={85}
         className="sticky z-0 object-cover pointer-events-none select-none"
         style={{ objectPosition: "top 0px" }}
       />
