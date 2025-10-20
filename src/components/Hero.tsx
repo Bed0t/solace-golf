@@ -2,30 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-
-const InfiniteSlider = dynamic(() => import("@/components/ui/infinite-slider").then(m => m.InfiniteSlider), {
-  ssr: false,
-  loading: () => <div className="h-20 w-full" aria-hidden />,
-});
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
 export default function Hero() {
   return (
     <section className="relative sticky min-h-[100svh] overflow-hidden">
       {/* Infinite slider background */}
       <div className="absolute inset-x-0 top-[34vh] z-0 flex min-h-[5px] items-center justify-center">
-        <InfiniteSlider gap={0} duration={100} className="w-auto h-[clamp(20px,4vw,48px)]">
-          <Image
+        <InfiniteSlider gap={0} duration={100} className="w-auto h-[clamp(20px,4w,48px)]">
+          <img
             src="/swatches/Swatch Group.png"
             alt="Swatch Group"
-            width={3000}
-            height={80}
-            priority={false}
-            loading="lazy"
-            placeholder="empty"
-            className="h-20 w-[3000px]"
+            className="h-20 w-2000"
           />
-        </InfiniteSlider>
+        </InfiniteSlider> 
       </div>
 
       {/* Background hero image */}
@@ -34,10 +24,8 @@ export default function Hero() {
         alt="Solace Golf Bag"
         fill
         priority
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
-        quality={75}
-        placeholder="blur"
-        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AApMB1b5C6JkAAAAASUVORK5CYII="
+        sizes="150vw"
+        quality={100}
         className="sticky z-0 object-cover pointer-events-none select-none"
         style={{ objectPosition: "top 0px" }}
       />
