@@ -10,16 +10,26 @@ const ThreeModelViewer = dynamic(() => import("@/components/ThreeModelViewer"), 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     if (!email) return;
-    // Placeholder submit: store locally for now
+    setError(null);
     try {
-      localStorage.setItem("solace_signup_email", email);
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({} as any));
+        setError(data?.error || "Something went wrong. Please try again.");
+        return;
+      }
       setSubmitted(true);
-    } catch (error) {
-      setSubmitted(true);
+    } catch (e) {
+      setError("Network error. Please try again.");
     }
   }
 
@@ -64,6 +74,9 @@ export default function SignupPage() {
             </button>
           </form>
         </div>
+        {error && (
+          <div className="mt-3 text-center text-red-300 text-sm">{error}</div>
+        )}
         {submitted && (
           <div className="mt-4 text-center text-white/60 text-sm">
             <p>Welcome. We’ll be in touch.</p>
